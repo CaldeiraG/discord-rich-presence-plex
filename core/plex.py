@@ -2,7 +2,7 @@
 
 from .config import config
 from .discord import DiscordIpcService
-from .imgur import uploadToImgur
+from .zipline import uploadToZipline
 from config.constants import name, plexClientID
 from plexapi.alert import AlertListener
 from plexapi.media import Genre, Guid
@@ -153,11 +153,11 @@ class PlexAlertListener(threading.Thread):
 			self.logger.exception("An unexpected error occured in the Plex alert handler")
 			self.disconnectRpc()
 
-	def uploadToImgur(self, thumb: str) -> Optional[str]:
+	def uploadToZipline(self, thumb: str) -> Optional[str]:
 		thumbUrl = getCacheKey(thumb)
 		if not thumbUrl or not isinstance(thumbUrl, str):
 			self.logger.debug("Uploading image to Imgur")
-			thumbUrl = uploadToImgur(self.server.url(thumb, True))
+			thumbUrl = uploadToZipline(self.server.url(thumb, True))
 			setCacheKey(thumb, thumbUrl)
 		return thumbUrl
 
@@ -289,8 +289,8 @@ class PlexAlertListener(threading.Thread):
 			if not config["display"]["statusIcon"]:
 				stateStrings.append(state.capitalize())
 		stateText = " · ".join(stateString for stateString in stateStrings if stateString)
-		thumbUrl = self.uploadToImgur(thumb) if thumb and config["display"]["posters"]["enabled"] else ""
-		smallThumbUrl = self.uploadToImgur(smallThumb) if smallThumb and config["display"]["posters"]["enabled"] else ""
+		thumbUrl = self.uploadToZipline(thumb) if thumb and config["display"]["posters"]["enabled"] else ""
+		smallThumbUrl = self.uploadToZipline(smallThumb) if smallThumb and config["display"]["posters"]["enabled"] else ""
 		activity: models.discord.Activity = {
 			"type": mediaTypeActivityTypeMap[mediaType],
 			"details": truncate(title, 120),

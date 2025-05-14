@@ -25,7 +25,7 @@ config: models.config.Config = {
 		"paused": False,
 		"posters": {
 			"enabled": False,
-			"imgurClientID": "",
+			"ziplineAuth": "",
 			"maxSize": 256,
 		},
 		"buttons": [],
