@@ -6,7 +6,7 @@ class Logging(TypedDict):
 
 class Posters(TypedDict):
 	enabled: bool
-	imgurClientID: str
+	ziplineAuth: str
 	maxSize: int
 
 class Button(TypedDict):

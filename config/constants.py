@@ -5,7 +5,7 @@ name = "Discord Rich Presence for Plex"
 version = "2.11.0"
 
 plexClientID = "discord-rich-presence-plex"
-discordClientID = "413407336082833418"
+discordClientID = "1372122856409796649"
 
 dataDirectoryPath = "data"
 configFilePathBase = os.path.join(dataDirectoryPath, "config")
