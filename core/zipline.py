@@ -19,8 +19,8 @@ def uploadToZipline(url: str) -> Optional[str]:
             files = {"file" : (filename,originalImage, "image/jpeg") })
         logger.debug("HTTP %d, %s, %s", response.status_code, response.headers, response.text.strip())
         data = response.json()
-    	if not response.status_code == 200:
-        	raise Exception(data["files"]["error"])
+        if not response.status_code == 200:
+            raise Exception(data["files"]["error"])
         return data["files"][0]["url"]
     except:
         logger.exception("An unexpected error occured while uploading an image to Zipline")
