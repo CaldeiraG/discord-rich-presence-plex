@@ -8,6 +8,7 @@ import requests
 
 def uploadToZipline(url: str) -> Optional[str]:
     try:
+        print(url)
         originalImageBytesIO = io.BytesIO(requests.get(url).content)
         originalImage = Image.open(originalImageBytesIO).convert("RGB")
         newImage = Image.new("RGB", originalImage.size)

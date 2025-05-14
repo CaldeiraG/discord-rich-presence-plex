@@ -289,7 +289,6 @@ class PlexAlertListener(threading.Thread):
 			if not config["display"]["statusIcon"]:
 				stateStrings.append(state.capitalize())
 		stateText = " · ".join(stateString for stateString in stateStrings if stateString)
-		print(f"Thumb: {thumb}")
 		thumbUrl = self.uploadToZipline(thumb) if thumb and config["display"]["posters"]["enabled"] else ""
 		smallThumbUrl = self.uploadToZipline(smallThumb) if smallThumb and config["display"]["posters"]["enabled"] else ""
 		activity: models.discord.Activity = {
